@@ -1,6 +1,5 @@
 import gspread
 from google.oauth2.service_account import Credentials
-from pprint import pprint
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -26,7 +25,7 @@ def get_sales_data():
         print("Data should be six numbers, separated by commas.")
         print("Example: 10,20,30,40,50,60\n")
 
-        data_str = input("Enter your data here: ")
+        data_str = input("Enter your data here:\n")
 
         sales_data = data_str.split(",")
 
@@ -56,25 +55,6 @@ def validate_data(values):
     return True
 
 
-# def update_sales_worksheet(data):
-#     """
-#     Update sales worksheet, add new row with the list data provided
-#     """
-#     print("Updating sales worksheet...\n")
-#     sales_worksheet = SHEET.worksheet("sales")
-#     sales_worksheet.append_row(data)
-#     print("Sales worksheet updated successfully.\n")
-
-
-# def update_surplus_worksheet(data):
-#     """
-#     Update surplus worksheet, add new row with the list data provided 
-#     """
-#     print("Updating surplus worksheet...\n")
-#     surplus_worksheet = SHEET.worksheet("surplus")
-#     surplus_worksheet.append_row(data)
-#     print("Surplus worksheet updated successfully.\n")
-
 def update_worksheet(data, worksheet):
     """
     Receives a list of integers to be inserted into a worksheet
@@ -89,6 +69,7 @@ def update_worksheet(data, worksheet):
 def calculate_surplus_data(sales_row):
     """
     Compare sales with stock and calculate the surplus for each item type.
+
     The surplus is defined as the sales figure subtracted from the stock:
     - Positive surplus indicates waste
     - Negative surplus indicates extra made when stock was sold out.
